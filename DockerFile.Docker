@@ -1,0 +1,16 @@
+FROM python:3.7-slim
+
+RUN mkdir /usr/pydiceweb
+WORKDIR /usr/pydiceweb
+
+COPY requirements.txt ./
+COPY .coveragerc ./
+COPY pylintrc ./
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY pathseeker ./pathseeker
+
+RUN python -m pytest --black --isort --pylint --cov pathseeker
+
+CMD exec gunicorn --bind :$PORT --workers 1 pathseeker.src.app:APP
