@@ -7,12 +7,12 @@ RUN apk update
 RUN apk add musl-dev mariadb-dev gcc
 
 COPY requirements.txt ./
-COPY .coveragerc ./
-COPY pylintrc ./
 
 RUN python -m pip install --upgrade --no-cache-dir setuptools
 RUN python -m pip install --no-cache-dir -r requirements.txt
 
+COPY .coveragerc ./
+COPY pylintrc ./
 COPY pathseeker ./pathseeker
 
 RUN python -m pytest --black --isort --pylint --cov pathseeker
