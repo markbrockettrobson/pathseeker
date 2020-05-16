@@ -7,13 +7,13 @@ import pathseeker.src.ability_score as ability_score
 
 class AbilityScoreManager(i_ability_score_manager.IAbilityScoreManager):
 
-    STRENGTH = ability_score.AbilityScore("strength", "STR")
-    DEXTERITY = ability_score.AbilityScore("dexterity", "DEX")
-    CONSTITUTION = ability_score.AbilityScore("constitution", "CON")
-    INTELLIGENCE = ability_score.AbilityScore("intelligence", "INT")
-    WISDOM = ability_score.AbilityScore("wisdom", "WIS")
-    CHARISMA = ability_score.AbilityScore("charisma", "CHA")
-    FREE = ability_score.AbilityScore("free", "FRE")
+    STRENGTH = ability_score.AbilityScore(name="strength", short_name="STR")
+    DEXTERITY = ability_score.AbilityScore(name="dexterity", short_name="DEX")
+    CONSTITUTION = ability_score.AbilityScore(name="constitution", short_name="CON")
+    INTELLIGENCE = ability_score.AbilityScore(name="intelligence", short_name="INT")
+    WISDOM = ability_score.AbilityScore(name="wisdom", short_name="WIS")
+    CHARISMA = ability_score.AbilityScore(name="charisma", short_name="CHA")
+    FREE = ability_score.AbilityScore(name="free", short_name="FRE")
 
     ABILITY_SCORES = [
         STRENGTH,
@@ -31,14 +31,6 @@ class AbilityScoreManager(i_ability_score_manager.IAbilityScoreManager):
         _ability_score.get_short_name(): _ability_score
         for _ability_score in ABILITY_SCORES
     }
-
-    @staticmethod
-    def name_to_short_name(name: str) -> str:
-        return AbilityScoreManager.name_to_type(name).get_short_name()
-
-    @staticmethod
-    def short_name_to_name(short_name: str) -> str:
-        return AbilityScoreManager.short_name_to_type(short_name).get_name()
 
     @staticmethod
     def name_to_type(name: str) -> i_ability_score.IAbilityScore:

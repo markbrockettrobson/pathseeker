@@ -50,22 +50,6 @@ ABILITY_SCORE_TO_ABILITY_MODIFIER = [
 
 
 class TestAbilityScoreManager(unittest.TestCase):
-    def test_name_to_short_name_pathfinder_type(self):
-        for name, short_name, _ in PATHFINDER_TYPES:
-            with self.subTest(f"test: name={name} short_name={short_name}"):
-                returned_short_name = ability_score_manager.AbilityScoreManager.name_to_short_name(
-                    name
-                )
-                self.assertEqual(returned_short_name, short_name)
-
-    def test_short_name_to_name_pathfinder_type(self):
-        for name, short_name, _ in PATHFINDER_TYPES:
-            with self.subTest(f"test: name={name} short_name={short_name}"):
-                returned_name = ability_score_manager.AbilityScoreManager.short_name_to_name(
-                    short_name
-                )
-                self.assertEqual(returned_name, name)
-
     def test_name_to_type_pathfinder_type(self):
         for name, _, ability_score_type in PATHFINDER_TYPES:
             with self.subTest(f"test: name={name}"):
@@ -81,27 +65,6 @@ class TestAbilityScoreManager(unittest.TestCase):
                     short_name
                 )
                 self.assertEqual(returned_type, ability_score_type)
-
-    def test_name_to_short_name_non_pathfinder_type(self):
-        for name, _, _ in NON_PATHFINDER_TYPES:
-            with self.subTest(f"test: name={name}"):
-                with self.assertRaises(Exception) as exception:
-                    ability_score_manager.AbilityScoreManager.name_to_type(name)
-                self.assertEqual(
-                    str(exception.exception), f'Unknown ability score name "{name}"'
-                )
-
-    def test_short_name_to_name_non_pathfinder_type(self):
-        for _, short_name, _ in NON_PATHFINDER_TYPES:
-            with self.subTest(f"test: short_name={short_name}"):
-                with self.assertRaises(Exception) as exception:
-                    ability_score_manager.AbilityScoreManager.short_name_to_name(
-                        short_name
-                    )
-                self.assertEqual(
-                    str(exception.exception),
-                    f'Unknown ability score short name "{short_name}"',
-                )
 
     def test_name_to_type_non_pathfinder_type(self):
         for name, _, _ in NON_PATHFINDER_TYPES:

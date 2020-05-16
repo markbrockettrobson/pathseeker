@@ -7,16 +7,6 @@ import pathseeker.interface.i_ability_score as i_ability_score
 class IAbilityScoreManager(abc.ABC):
     @staticmethod
     @abc.abstractmethod
-    def name_to_short_name(name: str) -> str:
-        pass
-
-    @staticmethod
-    @abc.abstractmethod
-    def short_name_to_name(short_name: str) -> str:
-        pass
-
-    @staticmethod
-    @abc.abstractmethod
     def name_to_type(name: str) -> i_ability_score.IAbilityScore:
         pass
 
