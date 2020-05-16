@@ -16,7 +16,9 @@ class PathSeekerApp:
         self._host = host
         self._port = port
 
-        self._app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:ePXImvuAak3DqWOmJpqb@localhost/pathseeker'
+        self._app.config[
+            "SQLALCHEMY_DATABASE_URI"
+        ] = "mysql://root:ePXImvuAak3DqWOmJpqb@localhost/pathseeker"
 
         self._db = flask_sqlalchemy.SQLAlchemy(self._app)
 
@@ -41,16 +43,16 @@ class User(DB.Model):
     email = DB.Column(DB.String(120), unique=True, nullable=False)
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return "<User %r>" % self.username
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     DB.create_all()
-    admin = User(username='admin', email='admin@example.com')
-    guest = User(username='guest', email='guest@example.com')
+    admin = User(username="admin", email="admin@example.com")
+    guest = User(username="guest", email="guest@example.com")
     DB.session.add(admin)
     DB.session.add(guest)
     DB.session.commit()
 
     print(User.query.all())
-    print(User.query.filter_by(username='admin').first())
+    print(User.query.filter_by(username="admin").first())
