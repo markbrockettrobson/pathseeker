@@ -1,7 +1,7 @@
-import pathseeker.interface.i_ability_score as i_ability_score
+import pathseeker.interface.i_ability as i_ability
 
 
-class AbilityScore(i_ability_score.IAbilityScore):
+class Ability(i_ability.IAbility):
     def __init__(self, name: str, short_name: str):
         self.__name = name
         self.__short_name = short_name
@@ -15,4 +15,4 @@ class AbilityScore(i_ability_score.IAbilityScore):
         return self.__short_name
 
     def __str__(self) -> str:
-        return f"AbilityScore: name={self.__name}, short_name={self.__short_name}"
+        return f"Ability: name={self.__name}, short_name={self.__short_name}"

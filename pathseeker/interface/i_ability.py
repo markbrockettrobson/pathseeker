@@ -1,7 +1,7 @@
 import abc
 
 
-class IAbilityScore(abc.ABC):
+class IAbility(abc.ABC):
     @property
     @abc.abstractmethod
     def name(self) -> str:
