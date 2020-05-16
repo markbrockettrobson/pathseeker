@@ -6,10 +6,12 @@ class AbilityScore(i_ability_score.IAbilityScore):
         self.__name = name
         self.__short_name = short_name
 
-    def get_name(self) -> str:
+    @property
+    def name(self) -> str:
         return self.__name
 
-    def get_short_name(self) -> str:
+    @property
+    def short_name(self) -> str:
         return self.__short_name
 
     def __str__(self) -> str:

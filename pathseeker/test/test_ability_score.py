@@ -16,7 +16,7 @@ class TestAbilityScore(unittest.TestCase):
         test_ability_score = ability_score.AbilityScore(
             name=name, short_name=short_name
         )
-        self.assertEqual(test_ability_score.get_name(), name)
+        self.assertEqual(test_ability_score.name, name)
 
     @hypothesis.given(
         name=strategies.text(alphabet=string.ascii_letters, min_size=1),
@@ -26,7 +26,7 @@ class TestAbilityScore(unittest.TestCase):
         test_ability_score = ability_score.AbilityScore(
             name=name, short_name=short_name
         )
-        self.assertEqual(test_ability_score.get_short_name(), short_name)
+        self.assertEqual(test_ability_score.short_name, short_name)
 
     @hypothesis.given(
         name=strategies.text(alphabet=string.ascii_letters, min_size=1),

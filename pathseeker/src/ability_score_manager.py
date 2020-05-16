@@ -25,11 +25,10 @@ class AbilityScoreManager(i_ability_score_manager.IAbilityScoreManager):
         FREE,
     ]
     __NAME_TO_TYPE = {
-        _ability_score.get_name(): _ability_score for _ability_score in ABILITY_SCORES
+        _ability_score.name: _ability_score for _ability_score in ABILITY_SCORES
     }
     __SHORT_NAME_TO_TYPE = {
-        _ability_score.get_short_name(): _ability_score
-        for _ability_score in ABILITY_SCORES
+        _ability_score.short_name: _ability_score for _ability_score in ABILITY_SCORES
     }
 
     @staticmethod

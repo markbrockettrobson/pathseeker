@@ -2,22 +2,27 @@ import abc
 
 
 class ISize(abc.ABC):
+    @property
     @abc.abstractmethod
-    def get_name(self) -> str:
+    def name(self) -> str:
         pass
 
+    @property
     @abc.abstractmethod
-    def get_short_name(self) -> str:
+    def short_name(self) -> str:
         pass
 
+    @property
     @abc.abstractmethod
-    def get_space(self) -> int:
+    def space(self) -> int:
         pass
 
+    @property
     @abc.abstractmethod
-    def get_tall_reach(self) -> int:
+    def tall_reach(self) -> int:
         pass
 
+    @property
     @abc.abstractmethod
-    def get_long_reach(self) -> int:
+    def long_reach(self) -> int:
         pass

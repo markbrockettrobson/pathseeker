@@ -11,52 +11,37 @@ class PathSeekerApp:
         debug: bool = False,
         port: int = int(os.environ.get("PORT", 8080)),
     ):
-        self._app = flask.Flask(__name__)
-        self._debug = debug
-        self._host = host
-        self._port = port
+        self.__app = flask.Flask(__name__)
+        self.__debug = debug
+        self.__host = host
+        self.__port = port
 
-        self._app.config[
+        self.__app.config[
             "SQLALCHEMY_DATABASE_URI"
         ] = "mysql://root:ePXImvuAak3DqWOmJpqb@localhost/pathseeker"
-        self._app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+        self.__app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-        self._db = flask_sqlalchemy.SQLAlchemy(self._app)
+        self.__db = flask_sqlalchemy.SQLAlchemy(self.__app)
 
-    def get_app(self) -> flask.Flask:
-        return self._app
+    @property
+    def app(self) -> flask.Flask:
+        return self.__app
 
-    def get_db(self) -> flask_sqlalchemy.SQLAlchemy:
-        return self._db
+    @property
+    def db(self) -> flask_sqlalchemy.SQLAlchemy:
+        return self.__db
 
     def run(self) -> None:
-        self._app.run(host=self._host, debug=self._debug, port=self._port)
+        self.__app.run(host=self.__host, debug=self.__debug, port=self.__port)
 
 
 PATHSEEKER_APP = PathSeekerApp(host="localhost", debug=True, port=5000)
-APP = PATHSEEKER_APP.get_app()
-DB = PATHSEEKER_APP.get_db()
-
-
-class User(DB.Model):
-    id = DB.Column(DB.Integer, primary_key=True)
-    username = DB.Column(DB.String(80), unique=True, nullable=False)
-    email = DB.Column(DB.String(120), unique=True, nullable=False)
-
-    def __repr__(self):
-        return "<User %r>" % self.username
+APP = PATHSEEKER_APP.app
+DB = PATHSEEKER_APP.db
 
 
 def main():
     DB.create_all()
-    admin = User(username="admin", email="admin@example.com")
-    guest = User(username="guest", email="guest@example.com")
-    DB.session.add(admin)
-    DB.session.add(guest)
-    DB.session.commit()
-
-    print(User.query.all())
-    print(User.query.filter_by(username="admin").first())
 
 
 if __name__ == "__main__":

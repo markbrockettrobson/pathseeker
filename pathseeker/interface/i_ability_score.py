@@ -2,10 +2,12 @@ import abc
 
 
 class IAbilityScore(abc.ABC):
+    @property
     @abc.abstractmethod
-    def get_name(self) -> str:
+    def name(self) -> str:
         pass
 
+    @property
     @abc.abstractmethod
-    def get_short_name(self) -> str:
+    def short_name(self) -> str:
         pass
