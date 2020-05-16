@@ -19,6 +19,7 @@ class PathSeekerApp:
         self._app.config[
             "SQLALCHEMY_DATABASE_URI"
         ] = "mysql://root:ePXImvuAak3DqWOmJpqb@localhost/pathseeker"
+        self._app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
         self._db = flask_sqlalchemy.SQLAlchemy(self._app)
 
@@ -46,7 +47,7 @@ class User(DB.Model):
         return "<User %r>" % self.username
 
 
-if __name__ == "__main__":
+def main():
     DB.create_all()
     admin = User(username="admin", email="admin@example.com")
     guest = User(username="guest", email="guest@example.com")
@@ -56,3 +57,7 @@ if __name__ == "__main__":
 
     print(User.query.all())
     print(User.query.filter_by(username="admin").first())
+
+
+if __name__ == "__main__":
+    main()
