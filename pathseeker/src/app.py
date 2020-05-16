@@ -40,7 +40,7 @@ APP = PATHSEEKER_APP.app
 DB = PATHSEEKER_APP.db
 
 
-def main():
+def main():  # pragma: no cover
     DB.create_all()
 
 
