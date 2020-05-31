@@ -174,7 +174,7 @@ expected-line-ending-format=
 bad-functions=map,filter,input
 
 # Good variable names which should always be accepted, separated by a comma
-good-names=i,j,k,ex,Run,_,ID,Id,id,x,y,z,X,Y,Z,K,V,v
+good-names=i,j,k,ex,Run,_,ID,Id,id,x,y,z,X,Y,Z,K,V,v,db,DB
 
 # Bad variable names which should always be refused, separated by a comma
 bad-names=foo,bar,baz,toto,tutu,tata
