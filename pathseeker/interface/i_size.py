@@ -26,3 +26,7 @@ class ISize(abc.ABC):
     @abc.abstractmethod
     def long_reach(self) -> int:
         pass
+
+    @abc.abstractmethod
+    def __str__(self) -> str:
+        pass

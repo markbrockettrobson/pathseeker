@@ -11,3 +11,7 @@ class IAbility(abc.ABC):
     @abc.abstractmethod
     def short_name(self) -> str:
         pass
+
+    @abc.abstractmethod
+    def __str__(self) -> str:
+        pass
