@@ -1,4 +1,4 @@
-import pathseeker.interface.i_ability as i_ability
+import pathseeker.interface.data_types.i_ability as i_ability
 
 
 class Ability(i_ability.IAbility):

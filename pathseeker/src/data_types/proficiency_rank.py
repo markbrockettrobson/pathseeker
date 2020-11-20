@@ -1,4 +1,4 @@
-import pathseeker.interface.i_proficiency_rank as i_proficiency_rank
+import pathseeker.interface.data_types.i_proficiency_rank as i_proficiency_rank
 
 
 class ProficiencyRank(i_proficiency_rank.IProficiencyRank):

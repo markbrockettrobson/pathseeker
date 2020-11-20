@@ -6,8 +6,8 @@ import unittest.mock as mock
 import hypothesis
 import hypothesis.strategies as strategies
 
-import pathseeker.interface.i_ability as i_ability
-import pathseeker.src.ability_manager as ability_manager
+import pathseeker.interface.data_types.i_ability as i_ability
+import pathseeker.src.managers.ability_manager as ability_manager
 
 PATHFINDER_TYPES = [
     ("strength", "STR", ability_manager.AbilityManager.STRENGTH),

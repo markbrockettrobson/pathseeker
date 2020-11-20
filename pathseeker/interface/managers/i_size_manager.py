@@ -1,6 +1,6 @@
 import abc
 
-import pathseeker.interface.i_size as i_size
+import pathseeker.interface.data_types.i_size as i_size
 
 
 class ISizeManager(abc.ABC):

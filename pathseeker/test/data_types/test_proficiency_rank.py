@@ -4,7 +4,7 @@ import unittest
 import hypothesis
 import hypothesis.strategies as strategies
 
-import pathseeker.src.proficiency_rank as proficiency_rank
+import pathseeker.src.data_types.proficiency_rank as proficiency_rank
 
 
 class TestProficiencyRank(unittest.TestCase):

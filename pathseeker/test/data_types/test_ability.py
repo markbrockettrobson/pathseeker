@@ -4,7 +4,7 @@ import unittest
 import hypothesis
 import hypothesis.strategies as strategies
 
-import pathseeker.src.ability as ability
+import pathseeker.src.data_types.ability as ability
 
 
 class TestAbility(unittest.TestCase):

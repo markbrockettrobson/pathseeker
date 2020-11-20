@@ -1,8 +1,8 @@
 import unittest
 import unittest.mock as mock
 
-import pathseeker.interface.i_size as i_size
-import pathseeker.src.size_manager as size_manager
+import pathseeker.interface.data_types.i_size as i_size
+import pathseeker.src.managers.size_manager as size_manager
 
 PATHFINDER_SIZES = [
     ("tiny", "T", size_manager.SizeManager.TINY),
