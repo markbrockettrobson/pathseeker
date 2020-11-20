@@ -4,7 +4,7 @@ import unittest
 import hypothesis
 import hypothesis.strategies as strategies
 
-import pathseeker.src.size as size
+import pathseeker.src.data_types.size as size
 
 
 class TestSize(unittest.TestCase):

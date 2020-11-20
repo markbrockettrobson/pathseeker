@@ -1,6 +1,6 @@
-import pathseeker.interface.i_proficiency_rank as i_proficiency_rank
-import pathseeker.interface.i_proficiency_rank_manager as i_proficiency_rank_manager
-import pathseeker.src.proficiency_rank as proficiency_rank
+import pathseeker.interface.data_types.i_proficiency_rank as i_proficiency_rank
+import pathseeker.interface.managers.i_proficiency_rank_manager as i_proficiency_rank_manager
+import pathseeker.src.data_types.proficiency_rank as proficiency_rank
 
 
 class ProficiencyRankManager(i_proficiency_rank_manager.IProficiencyRankManager):

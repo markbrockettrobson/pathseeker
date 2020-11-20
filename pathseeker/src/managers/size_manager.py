@@ -1,6 +1,6 @@
-import pathseeker.interface.i_size as i_size
-import pathseeker.interface.i_size_manager as i_size_manager
-import pathseeker.src.size as size
+import pathseeker.interface.data_types.i_size as i_size
+import pathseeker.interface.managers.i_size_manager as i_size_manager
+import pathseeker.src.data_types.size as size
 
 
 class SizeManager(i_size_manager.ISizeManager):

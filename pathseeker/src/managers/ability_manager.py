@@ -1,8 +1,8 @@
 import typing
 
-import pathseeker.interface.i_ability as i_ability
-import pathseeker.interface.i_ability_manager as i_ability_manager
-import pathseeker.src.ability as ability
+import pathseeker.interface.data_types.i_ability as i_ability
+import pathseeker.interface.managers.i_ability_manager as i_ability_manager
+import pathseeker.src.data_types.ability as ability
 
 
 class AbilityManager(i_ability_manager.IAbilityManager):

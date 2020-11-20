@@ -1,8 +1,8 @@
 import unittest
 import unittest.mock as mock
 
-import pathseeker.interface.i_proficiency_rank as i_proficiency_rank
-import pathseeker.src.proficiency_rank_manager as proficiency_rank_manager
+import pathseeker.interface.data_types.i_proficiency_rank as i_proficiency_rank
+import pathseeker.src.managers.proficiency_rank_manager as proficiency_rank_manager
 
 PATHFINDER_TYPES = [
     ("untrained", "U", proficiency_rank_manager.ProficiencyRankManager.UNTRAINED),
