@@ -1,4 +1,5 @@
 import pathseeker.interface.data_types.i_ability as i_ability
+import pathseeker.src.common.to_string_formatter as to_string_formatter
 
 
 class Ability(i_ability.IAbility):
@@ -15,4 +16,6 @@ class Ability(i_ability.IAbility):
         return self.__short_name
 
     def __str__(self) -> str:
-        return f"Ability: name={self.__name}, short_name={self.__short_name}"
+        return to_string_formatter.ToStringFormatter.to_string(
+            class_name=Ability.__name__, name=self.__name, short_name=self.__short_name
+        )

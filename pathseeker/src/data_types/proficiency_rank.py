@@ -1,4 +1,5 @@
 import pathseeker.interface.data_types.i_proficiency_rank as i_proficiency_rank
+import pathseeker.src.common.to_string_formatter as to_string_formatter
 
 
 class ProficiencyRank(i_proficiency_rank.IProficiencyRank):
@@ -20,8 +21,9 @@ class ProficiencyRank(i_proficiency_rank.IProficiencyRank):
         return self.__value
 
     def __str__(self) -> str:
-        return (
-            f"ProficiencyRank: name={self.__name},"
-            f" short_name={self.__short_name},"
-            f" value={self.__value}"
+        return to_string_formatter.ToStringFormatter.to_string(
+            class_name=ProficiencyRank.__name__,
+            name=self.__name,
+            short_name=self.__short_name,
+            value=str(self.__value),
         )
