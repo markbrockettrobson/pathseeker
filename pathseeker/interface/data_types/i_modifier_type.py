@@ -3,7 +3,7 @@ import abc
 from pathseeker.interface.common.i_data_type import IDataType
 
 
-class IAbility(IDataType, metaclass=abc.ABCMeta):
+class IModifierType(IDataType, metaclass=abc.ABCMeta):
     @property
     @abc.abstractmethod
     def name(self) -> str:

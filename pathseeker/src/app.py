@@ -5,20 +5,13 @@ import flask_sqlalchemy
 
 
 class PathSeekerApp:
-    def __init__(
-        self,
-        host: str = "0.0.0.0",
-        debug: bool = False,
-        port: int = int(os.environ.get("PORT", 8080)),
-    ):
+    def __init__(self, host: str = "0.0.0.0", debug: bool = False, port: int = int(os.environ.get("PORT", 8080))):
         self.__app = flask.Flask(__name__)
         self.__debug = debug
         self.__host = host
         self.__port = port
 
-        self.__app.config[
-            "SQLALCHEMY_DATABASE_URI"
-        ] = "mysql://root:ePXImvuAak3DqWOmJpqb@localhost/pathseeker"
+        self.__app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:ePXImvuAak3DqWOmJpqb@localhost/pathseeker"
         self.__app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
         self.__db = flask_sqlalchemy.SQLAlchemy(self.__app)

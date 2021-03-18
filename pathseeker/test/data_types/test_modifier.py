@@ -4,17 +4,17 @@ import unittest
 import hypothesis
 import hypothesis.strategies as strategies
 
-from pathseeker.src.data_types.proficiency_rank import ProficiencyRank
+from pathseeker.src.data_types.modifier import Modifier
 
 
-class TestProficiencyRank(unittest.TestCase):
+class TestModifier(unittest.TestCase):
     @hypothesis.given(
         name=strategies.text(alphabet=string.ascii_letters, min_size=1),
         short_name=strategies.text(alphabet=string.ascii_letters, min_size=1),
         value=strategies.integers(),
     )
     def test_get_name(self, name: str, short_name: str, value: int):
-        test_proficiency_rank = ProficiencyRank(name=name, short_name=short_name, value=value)
+        test_proficiency_rank = Modifier(name=name, short_name=short_name, value=value)
         self.assertEqual(test_proficiency_rank.name, name)
 
     @hypothesis.given(
@@ -23,7 +23,7 @@ class TestProficiencyRank(unittest.TestCase):
         value=strategies.integers(),
     )
     def test_get_short_name(self, name: str, short_name: str, value: int):
-        test_proficiency_rank = ProficiencyRank(name=name, short_name=short_name, value=value)
+        test_proficiency_rank = Modifier(name=name, short_name=short_name, value=value)
         self.assertEqual(test_proficiency_rank.short_name, short_name)
 
     @hypothesis.given(
@@ -32,7 +32,7 @@ class TestProficiencyRank(unittest.TestCase):
         value=strategies.integers(),
     )
     def test_get_space(self, name: str, short_name: str, value: int):
-        test_proficiency_rank = ProficiencyRank(name=name, short_name=short_name, value=value)
+        test_proficiency_rank = Modifier(name=name, short_name=short_name, value=value)
         self.assertEqual(test_proficiency_rank.value, value)
 
     @hypothesis.given(
@@ -41,7 +41,7 @@ class TestProficiencyRank(unittest.TestCase):
         value=strategies.integers(),
     )
     def test_str(self, name: str, short_name: str, value: int):
-        test_proficiency_rank = ProficiencyRank(name=name, short_name=short_name, value=value)
+        test_proficiency_rank = Modifier(name=name, short_name=short_name, value=value)
         self.assertEqual(
             str(test_proficiency_rank), f"ProficiencyRank: name={name}," f" short_name={short_name}," f" value={value}"
         )

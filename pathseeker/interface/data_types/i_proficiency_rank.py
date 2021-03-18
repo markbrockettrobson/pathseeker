@@ -1,7 +1,9 @@
 import abc
 
+from pathseeker.interface.common.i_data_type import IDataType
 
-class IProficiencyRank(abc.ABC):
+
+class IProficiencyRank(IDataType, metaclass=abc.ABCMeta):
     @property
     @abc.abstractmethod
     def name(self) -> str:
@@ -15,8 +17,4 @@ class IProficiencyRank(abc.ABC):
     @property
     @abc.abstractmethod
     def value(self) -> int:
-        pass
-
-    @abc.abstractmethod
-    def __str__(self) -> str:
         pass

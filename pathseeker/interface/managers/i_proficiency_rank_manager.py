@@ -1,15 +1,15 @@
 import abc
 
-import pathseeker.interface.data_types.i_proficiency_rank as i_proficiency_rank
+from pathseeker.interface.data_types.i_proficiency_rank import IProficiencyRank
 
 
-class IProficiencyRankManager(abc.ABC):
+class IProficiencyRankManager(metaclass=abc.ABCMeta):
     @staticmethod
     @abc.abstractmethod
-    def name_to_type(name: str) -> i_proficiency_rank.IProficiencyRank:
+    def name_to_type(name: str) -> IProficiencyRank:
         pass
 
     @staticmethod
     @abc.abstractmethod
-    def short_name_to_type(short_name: str) -> i_proficiency_rank.IProficiencyRank:
+    def short_name_to_type(short_name: str) -> IProficiencyRank:
         pass

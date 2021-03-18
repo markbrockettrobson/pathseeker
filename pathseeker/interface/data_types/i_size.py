@@ -1,7 +1,9 @@
 import abc
 
+from pathseeker.interface.common.i_data_type import IDataType
 
-class ISize(abc.ABC):
+
+class ISize(IDataType, metaclass=abc.ABCMeta):
     @property
     @abc.abstractmethod
     def name(self) -> str:
@@ -25,8 +27,4 @@ class ISize(abc.ABC):
     @property
     @abc.abstractmethod
     def long_reach(self) -> int:
-        pass
-
-    @abc.abstractmethod
-    def __str__(self) -> str:
         pass
