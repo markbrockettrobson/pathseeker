@@ -33,7 +33,7 @@ exclude = '''
 
 [tool.coverage.run]
 omit = [
-    'run_formater_and_tests.py',
+    'run_formatter_and_tests.py',
     '**/__init__.py',
     '**\test\**',
     '**/test/**',
@@ -45,12 +45,14 @@ omit = [
     '**/interface/**',
     '**\node_modules\**',
     '**/node_modules/**',
+    '**/strategies/**',
+    '**\strategies\**',
 ]
 
 
 [tool.coverage.report]
 omit = [
-    'run_formater_and_tests.py',
+    'run_formatter_and_tests.py',
     '**/__init__.py',
     '**\test\**',
     '**/test/**',
@@ -62,20 +64,20 @@ omit = [
     '**/interface/**',
     '**\node_modules\**',
     '**/node_modules/**',
+    '**/strategies/**',
+    '**\strategies\**',
 ]
 show_missing=true
 fail_under=100
 
 [tool.pylint.MASTER]
-# ignore=
 persistent = "yes"
 jobs = 8
 unsafe-load-any-extension = "no"
-extension-pkg-whitelist= "lxml.etree,cv2,logging"
+extension-pkg-whitelist= "lxml.etree,cv2,logging,pydantic"
 
 
 [tool.pylint.'MESSAGES CONTROL']
-enable="wildcard-import"
 disable = [
     "attribute-defined-outside-init",
     "duplicate-code",

@@ -9,5 +9,5 @@ class TestApp(unittest.TestCase):
         self.assertIsNotNone(application)
 
     def test_db_created(self):
-        database = app.DB
+        database = app.DATABASE
         self.assertIsNotNone(database)

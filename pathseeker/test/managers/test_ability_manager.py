@@ -1,12 +1,9 @@
-import random
-import typing
 import unittest
-import unittest.mock as mock
 
 import hypothesis
 import hypothesis.strategies as strategies
 
-from pathseeker.interface.data_types.i_ability import IAbility
+from pathseeker.src.data_types.ability import Ability
 from pathseeker.src.managers.ability_manager import AbilityManager
 
 PATHFINDER_TYPES = [
@@ -20,10 +17,10 @@ PATHFINDER_TYPES = [
 ]
 
 NON_PATHFINDER_TYPES = [
-    ("stregth", "STRENGTH", mock.create_autospec(IAbility)),
-    ("1", "2", mock.create_autospec(IAbility)),
-    ("WIS,CON", "dexterity", mock.create_autospec(IAbility)),
-    ("CONSTITUTION", "con", mock.create_autospec(IAbility)),
+    ("stregth", "STRENGTH", Ability(name="stregth", short_name="STRENGTH")),
+    ("1", "2", Ability(name="1", short_name="2")),
+    ("WIS,CON", "dexterity", Ability(name="WIS,CON", short_name="dexterity")),
+    ("CONSTITUTION", "con", Ability(name="CONSTITUTION", short_name="con")),
 ]
 
 ABILITY_SCORE_TO_ABILITY_MODIFIER = [
@@ -75,46 +72,6 @@ class TestAbilityManager(unittest.TestCase):
                 with self.assertRaises(Exception) as exception:
                     AbilityManager.short_name_to_type(short_name)
                 self.assertEqual(str(exception.exception), f'Unknown Ability short name "{short_name}"')
-
-    @hypothesis.given(strategies.lists(strategies.integers(min_value=0, max_value=len(PATHFINDER_TYPES) - 1)))
-    def test_comma_separated_name_list_to_type_list(self, test_index_list: typing.List[int]):
-        type_list = [PATHFINDER_TYPES[index][2] for index in test_index_list]
-        test_str = ",".join([PATHFINDER_TYPES[index][0] for index in test_index_list])
-        self.assertListEqual(type_list, AbilityManager.comma_separated_name_list_to_type_list(test_str))
-
-    @hypothesis.given(strategies.lists(strategies.integers(min_value=0, max_value=len(PATHFINDER_TYPES) - 1)))
-    def test_comma_separated_short_name_list_to_type_list(self, test_index_list: typing.List[int]):
-        type_list = [PATHFINDER_TYPES[index][2] for index in test_index_list]
-        test_str = ",".join([PATHFINDER_TYPES[index][1] for index in test_index_list])
-        self.assertListEqual(type_list, AbilityManager.comma_separated_short_name_list_to_type_list(test_str))
-
-    @hypothesis.given(
-        strategies.lists(strategies.integers(min_value=0, max_value=len(PATHFINDER_TYPES) - 1)),
-        strategies.lists(strategies.integers(min_value=0, max_value=len(NON_PATHFINDER_TYPES) - 1), min_size=1),
-    )
-    def test_comma_separated_name_list_to_type_list_non_pathfinder_type(
-        self, test_index_list: typing.List[int], test_non_pathfinder_index_list: typing.List[int]
-    ):
-        pathfinder_examples = [PATHFINDER_TYPES[index][0] for index in test_index_list]
-        for non_pathfinder in test_non_pathfinder_index_list:
-            pathfinder_examples.insert(random.randint(0, len(test_index_list)), NON_PATHFINDER_TYPES[non_pathfinder][0])
-        test_str = ",".join(pathfinder_examples)
-        with self.assertRaises(Exception):
-            AbilityManager.comma_separated_name_list_to_type_list(test_str)
-
-    @hypothesis.given(
-        strategies.lists(strategies.integers(min_value=0, max_value=len(PATHFINDER_TYPES) - 1)),
-        strategies.lists(strategies.integers(min_value=0, max_value=len(NON_PATHFINDER_TYPES) - 1), min_size=1),
-    )
-    def test_comma_separated_short_name_list_to_type_list_non_pathfinder_type(
-        self, test_index_list: typing.List[int], test_non_pathfinder_index_list: typing.List[int]
-    ):
-        pathfinder_examples = [PATHFINDER_TYPES[index][1] for index in test_index_list]
-        for non_pathfinder in test_non_pathfinder_index_list:
-            pathfinder_examples.insert(random.randint(0, len(test_index_list)), NON_PATHFINDER_TYPES[non_pathfinder][1])
-        test_str = ",".join(pathfinder_examples)
-        with self.assertRaises(Exception):
-            AbilityManager.comma_separated_short_name_list_to_type_list(test_str)
 
     @hypothesis.given(strategies.integers(min_value=0))
     def test_ability_score_to_ability_modifier_always_smaller(self, score: int):
