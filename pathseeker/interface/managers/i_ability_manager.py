@@ -1,20 +1,20 @@
-import abc
+from abc import ABCMeta, abstractmethod
 
 from pathseeker.src.data_types.ability import Ability
 
 
-class IAbilityManager(metaclass=abc.ABCMeta):
+class IAbilityManager(metaclass=ABCMeta):
     @staticmethod
-    @abc.abstractmethod
+    @abstractmethod
     def name_to_type(name: str) -> Ability:
         pass
 
     @staticmethod
-    @abc.abstractmethod
+    @abstractmethod
     def short_name_to_type(short_name: str) -> Ability:
         pass
 
     @staticmethod
-    @abc.abstractmethod
+    @abstractmethod
     def ability_score_to_ability_modifier(score: int) -> int:
         pass

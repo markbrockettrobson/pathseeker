@@ -1,7 +1,7 @@
-import unittest
+from unittest import TestCase
 
-import hypothesis
-import hypothesis.strategies as strategies
+from hypothesis import given
+from hypothesis.strategies import integers
 
 from pathseeker.src.data_types.ability import Ability
 from pathseeker.src.managers.ability_manager import AbilityManager
@@ -45,7 +45,7 @@ ABILITY_SCORE_TO_ABILITY_MODIFIER = [
 ]
 
 
-class TestAbilityManager(unittest.TestCase):
+class TestAbilityManager(TestCase):
     def test_name_to_type_pathfinder_type(self):
         for name, _, ability_score_type in PATHFINDER_TYPES:
             with self.subTest(f"test: name={name}"):
@@ -72,11 +72,11 @@ class TestAbilityManager(unittest.TestCase):
                     AbilityManager.short_name_to_type(short_name)
                 self.assertEqual(str(exception.exception), f'Unknown Ability short name "{short_name}"')
 
-    @hypothesis.given(strategies.integers(min_value=-10))
+    @given(integers(min_value=-10))
     def test_ability_score_to_ability_modifier_smaller(self, score: int):
         self.assertLess(AbilityManager.ability_score_to_ability_modifier(score), score)
 
-    @hypothesis.given(strategies.integers(max_value=-10))
+    @given(integers(max_value=-10))
     def test_ability_score_to_ability_modifier_larger(self, score: int):
         self.assertGreaterEqual(AbilityManager.ability_score_to_ability_modifier(score), score)
 

@@ -1,4 +1,4 @@
-import unittest
+from unittest import TestCase
 
 from pathseeker.src.data_types.size import Size
 from pathseeker.src.managers.size_manager import SizeManager
@@ -20,7 +20,7 @@ NON_PATHFINDER_SIZES = [
 ]
 
 
-class TestSizeManager(unittest.TestCase):
+class TestSizeManager(TestCase):
     def test_name_to_size_pathfinder_size(self):
         for name, _, size in PATHFINDER_SIZES:
             with self.subTest(f"test: name={name}"):

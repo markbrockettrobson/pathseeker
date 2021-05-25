@@ -1,4 +1,4 @@
-import unittest
+from unittest import TestCase
 
 from pathseeker.src.data_types.proficiency_rank import ProficiencyRank
 from pathseeker.src.managers.proficiency_rank_manager import ProficiencyRankManager
@@ -19,7 +19,7 @@ NON_PATHFINDER_TYPES = [
 ]
 
 
-class TestAbilityManager(unittest.TestCase):
+class TestAbilityManager(TestCase):
     def test_name_to_type_pathfinder_type(self):
         for name, _, ability_score_type in PATHFINDER_TYPES:
             with self.subTest(f"test: name={name}"):

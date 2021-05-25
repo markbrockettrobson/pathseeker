@@ -1,6 +1,6 @@
-import string
+from string import ascii_letters
 
-import hypothesis.strategies as strategies
+from hypothesis import strategies
 
 from pathseeker.src.data_types.ability import Ability
 
@@ -8,7 +8,7 @@ from pathseeker.src.data_types.ability import Ability
 @strategies.composite
 def ability_strategy(
     draw,
-    alphabet: str = string.ascii_letters,
+    alphabet: str = ascii_letters,
     min_name_length: int = 1,
     max_name_length: int = 10,
     min_short_name_length: int = 1,

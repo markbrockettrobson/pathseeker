@@ -1,13 +1,13 @@
-import unittest
+from unittest import TestCase
 
-import pathseeker.src.app as app
+from pathseeker.src.app import APP, DATABASE
 
 
-class TestApp(unittest.TestCase):
+class TestApp(TestCase):
     def test_app_created(self):
-        application = app.APP.test_client()
+        application = APP.test_client()
         self.assertIsNotNone(application)
 
     def test_db_created(self):
-        database = app.DATABASE
+        database = DATABASE
         self.assertIsNotNone(database)
