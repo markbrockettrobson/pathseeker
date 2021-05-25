@@ -1,6 +1,6 @@
 from os import environ
 from subprocess import run
-from typing import List, Optional, Dict
+from typing import Dict, List, Optional
 
 
 def main():
