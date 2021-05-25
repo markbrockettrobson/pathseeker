@@ -13,14 +13,13 @@ PATHFINDER_TYPES = [
     ("intelligence", "INT", AbilityManager.INTELLIGENCE),
     ("wisdom", "WIS", AbilityManager.WISDOM),
     ("charisma", "CHA", AbilityManager.CHARISMA),
-    ("free", "FRE", AbilityManager.FREE),
 ]
 
 NON_PATHFINDER_TYPES = [
     ("stregth", "STRENGTH", Ability(name="stregth", short_name="STRENGTH")),
-    ("1", "2", Ability(name="1", short_name="2")),
-    ("WIS,CON", "dexterity", Ability(name="WIS,CON", short_name="dexterity")),
-    ("CONSTITUTION", "con", Ability(name="CONSTITUTION", short_name="con")),
+    ("str", "STRENGTH", Ability(name="str", short_name="STRENGTH")),
+    ("wis,con", "DAX", Ability(name="wis,con", short_name="DAX")),
+    ("luck", "LUK", Ability(name="luck", short_name="LUK")),
 ]
 
 ABILITY_SCORE_TO_ABILITY_MODIFIER = [
@@ -73,9 +72,13 @@ class TestAbilityManager(unittest.TestCase):
                     AbilityManager.short_name_to_type(short_name)
                 self.assertEqual(str(exception.exception), f'Unknown Ability short name "{short_name}"')
 
-    @hypothesis.given(strategies.integers(min_value=0))
-    def test_ability_score_to_ability_modifier_always_smaller(self, score: int):
+    @hypothesis.given(strategies.integers(min_value=-10))
+    def test_ability_score_to_ability_modifier_smaller(self, score: int):
         self.assertLess(AbilityManager.ability_score_to_ability_modifier(score), score)
+
+    @hypothesis.given(strategies.integers(max_value=-10))
+    def test_ability_score_to_ability_modifier_larger(self, score: int):
+        self.assertGreaterEqual(AbilityManager.ability_score_to_ability_modifier(score), score)
 
     def test_ability_score_to_ability_modifier_known_values(self):
         for score, modifier in ABILITY_SCORE_TO_ABILITY_MODIFIER:

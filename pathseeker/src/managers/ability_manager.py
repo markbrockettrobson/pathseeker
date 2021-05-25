@@ -10,9 +10,8 @@ class AbilityManager(IAbilityManager):
     INTELLIGENCE = Ability(name="intelligence", short_name="INT")
     WISDOM = Ability(name="wisdom", short_name="WIS")
     CHARISMA = Ability(name="charisma", short_name="CHA")
-    FREE = Ability(name="free", short_name="FRE")
 
-    __ABILITIES = [STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA, FREE]
+    __ABILITIES = [STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA]
     __NAME_TO_TYPE = {_ability_score.name: _ability_score for _ability_score in __ABILITIES}
     __SHORT_NAME_TO_TYPE = {_ability_score.short_name: _ability_score for _ability_score in __ABILITIES}
 
