@@ -74,7 +74,7 @@ class TestAbilityManager(TestCase):
 
     @given(integers(min_value=-10))
     def test_ability_score_to_ability_modifier_smaller(self, score: int):
-        self.assertLess(AbilityManager.ability_score_to_ability_modifier(score), score)
+        self.assertLessEqual(AbilityManager.ability_score_to_ability_modifier(score), score)
 
     @given(integers(max_value=-10))
     def test_ability_score_to_ability_modifier_larger(self, score: int):
