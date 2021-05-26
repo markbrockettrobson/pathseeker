@@ -1,43 +1,32 @@
-import pathseeker.interface.data_types.i_size as i_size
-import pathseeker.src.common.to_string_formatter as to_string_formatter
+from pydantic import BaseModel, validator
+
+from pathseeker.src.data_types.validators.int_validators import cant_be_negative, must_be_multiple_of_five
+from pathseeker.src.data_types.validators.string_validators import cant_be_empty, must_be_lowercase, must_be_uppercase
 
 
-class Size(i_size.ISize):
-    def __init__(
-        self, name: str, short_name: str, space: int, tall_reach: int, long_reach: int
-    ):
-        self.__name = name
-        self.__short_name = short_name
-        self.__space = space
-        self.__tall_reach = tall_reach
-        self.__long_reach = long_reach
+class Size(BaseModel):
+    name: str
+    short_name: str
+    space: int
+    tall_reach: int
+    long_reach: int
 
-    @property
-    def name(self) -> str:
-        return self.__name
+    # validators
+    _ensure_name_is_not_empty: classmethod = validator("name", allow_reuse=True)(cant_be_empty)
+    _ensure_name_lowercase: classmethod = validator("name", allow_reuse=True)(must_be_lowercase)
 
-    @property
-    def short_name(self) -> str:
-        return self.__short_name
+    _ensure_short_name_is_not_empty: classmethod = validator("short_name", allow_reuse=True)(cant_be_empty)
+    _ensure_short_uppercase: classmethod = validator("short_name", allow_reuse=True)(must_be_uppercase)
 
-    @property
-    def space(self) -> int:
-        return self.__space
+    _ensure_space_is_not_negative: classmethod = validator("space", allow_reuse=True)(cant_be_negative)
+    _ensure_space_is_multiple_of_five: classmethod = validator("space", allow_reuse=True)(must_be_multiple_of_five)
 
-    @property
-    def tall_reach(self) -> int:
-        return self.__tall_reach
+    _ensure_tall_reach_is_not_negative: classmethod = validator("tall_reach", allow_reuse=True)(cant_be_negative)
+    _ensure_tall_reach_is_multiple_of_five: classmethod = validator("tall_reach", allow_reuse=True)(
+        must_be_multiple_of_five
+    )
 
-    @property
-    def long_reach(self) -> int:
-        return self.__long_reach
-
-    def __str__(self) -> str:
-        return to_string_formatter.ToStringFormatter.to_string(
-            class_name=Size.__name__,
-            name=self.__name,
-            short_name=self.__short_name,
-            space=str(self.__space),
-            tall_reach=str(self.__tall_reach),
-            long_reach=str(self.__long_reach),
-        )
+    _ensure_long_reach_is_not_negative: classmethod = validator("long_reach", allow_reuse=True)(cant_be_negative)
+    _ensure_long_reach_is_multiple_of_five: classmethod = validator("long_reach", allow_reuse=True)(
+        must_be_multiple_of_five
+    )

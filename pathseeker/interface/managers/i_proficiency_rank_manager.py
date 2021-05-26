@@ -1,15 +1,15 @@
-import abc
+from abc import ABCMeta, abstractmethod
 
-import pathseeker.interface.data_types.i_proficiency_rank as i_proficiency_rank
+from pathseeker.src.data_types.proficiency_rank import ProficiencyRank
 
 
-class IProficiencyRankManager(abc.ABC):
+class IProficiencyRankManager(metaclass=ABCMeta):
     @staticmethod
-    @abc.abstractmethod
-    def name_to_type(name: str) -> i_proficiency_rank.IProficiencyRank:
+    @abstractmethod
+    def name_to_type(name: str) -> ProficiencyRank:
         pass
 
     @staticmethod
-    @abc.abstractmethod
-    def short_name_to_type(short_name: str) -> i_proficiency_rank.IProficiencyRank:
+    @abstractmethod
+    def short_name_to_type(short_name: str) -> ProficiencyRank:
         pass

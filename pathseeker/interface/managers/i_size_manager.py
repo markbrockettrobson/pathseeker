@@ -1,15 +1,15 @@
-import abc
+from abc import ABCMeta, abstractmethod
 
-import pathseeker.interface.data_types.i_size as i_size
+from pathseeker.src.data_types.size import Size
 
 
-class ISizeManager(abc.ABC):
+class ISizeManager(metaclass=ABCMeta):
     @staticmethod
-    @abc.abstractmethod
-    def name_to_size(name: str) -> i_size.ISize:
+    @abstractmethod
+    def name_to_size(name: str) -> Size:
         pass
 
     @staticmethod
-    @abc.abstractmethod
-    def short_name_to_size(short_name: str) -> i_size.ISize:
+    @abstractmethod
+    def short_name_to_size(short_name: str) -> Size:
         pass

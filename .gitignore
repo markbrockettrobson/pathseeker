@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-.idea
+../.idea
 .idea\
 .idea/
 /.idea
@@ -46,7 +46,7 @@ pip-delete-this-directory.txt
 # Unit test / coverage reports
 htmlcov/
 .tox/
-.coverage
+pathseeker/.coverage
 .coverage.*
 .cache
 nosetests.xml

@@ -1,21 +1,15 @@
-import pathseeker.interface.data_types.i_ability as i_ability
-import pathseeker.src.common.to_string_formatter as to_string_formatter
+from pydantic import BaseModel, validator
+
+from pathseeker.src.data_types.validators.string_validators import cant_be_empty, must_be_lowercase, must_be_uppercase
 
 
-class Ability(i_ability.IAbility):
-    def __init__(self, name: str, short_name: str):
-        self.__name = name
-        self.__short_name = short_name
+class Ability(BaseModel):
+    name: str
+    short_name: str
 
-    @property
-    def name(self) -> str:
-        return self.__name
+    # validators
+    _ensure_name_is_not_empty: classmethod = validator("name", allow_reuse=True)(cant_be_empty)
+    _ensure_name_lowercase: classmethod = validator("name", allow_reuse=True)(must_be_lowercase)
 
-    @property
-    def short_name(self) -> str:
-        return self.__short_name
-
-    def __str__(self) -> str:
-        return to_string_formatter.ToStringFormatter.to_string(
-            class_name=Ability.__name__, name=self.__name, short_name=self.__short_name
-        )
+    _ensure_short_name_is_not_empty: classmethod = validator("short_name", allow_reuse=True)(cant_be_empty)
+    _ensure_short_uppercase: classmethod = validator("short_name", allow_reuse=True)(must_be_uppercase)

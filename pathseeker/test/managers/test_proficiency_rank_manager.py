@@ -1,63 +1,47 @@
-import unittest
-import unittest.mock as mock
+from unittest import TestCase
 
-import pathseeker.interface.data_types.i_proficiency_rank as i_proficiency_rank
-import pathseeker.src.managers.proficiency_rank_manager as proficiency_rank_manager
+from pathseeker.src.data_types.proficiency_rank import ProficiencyRank
+from pathseeker.src.managers.proficiency_rank_manager import ProficiencyRankManager
 
 PATHFINDER_TYPES = [
-    ("untrained", "U", proficiency_rank_manager.ProficiencyRankManager.UNTRAINED),
-    ("trained", "T", proficiency_rank_manager.ProficiencyRankManager.TRAINED),
-    ("expert", "E", proficiency_rank_manager.ProficiencyRankManager.EXPERT),
-    ("master", "M", proficiency_rank_manager.ProficiencyRankManager.MASTER),
-    ("legendary", "L", proficiency_rank_manager.ProficiencyRankManager.LEGENDARY),
+    ("untrained", "U", ProficiencyRankManager.UNTRAINED),
+    ("trained", "T", ProficiencyRankManager.TRAINED),
+    ("expert", "E", ProficiencyRankManager.EXPERT),
+    ("master", "M", ProficiencyRankManager.MASTER),
+    ("legendary", "L", ProficiencyRankManager.LEGENDARY),
 ]
 
 NON_PATHFINDER_TYPES = [
-    ("stregth", "STR", mock.create_autospec(i_proficiency_rank.IProficiencyRank)),
-    ("1", "2", mock.create_autospec(i_proficiency_rank.IProficiencyRank)),
-    (
-        "Legendary",
-        "dexterity",
-        mock.create_autospec(i_proficiency_rank.IProficiencyRank),
-    ),
-    ("EXPERT", "e", mock.create_autospec(i_proficiency_rank.IProficiencyRank)),
+    ("stregth", "STR", ProficiencyRank(name="stregth", short_name="STR", value=2, add_level=True)),
+    ("dex", "DEXTERITY", ProficiencyRank(name="dex", short_name="DEXTERITY", value=4, add_level=True)),
+    ("dexterity", "DEX", ProficiencyRank(name="dexterity", short_name="DEX", value=6, add_level=True)),
+    ("experts", "EEEE", ProficiencyRank(name="experts", short_name="EEEE", value=8, add_level=True)),
 ]
 
 
-class TestAbilityManager(unittest.TestCase):
+class TestAbilityManager(TestCase):
     def test_name_to_type_pathfinder_type(self):
         for name, _, ability_score_type in PATHFINDER_TYPES:
             with self.subTest(f"test: name={name}"):
-                returned_type = proficiency_rank_manager.ProficiencyRankManager.name_to_type(
-                    name
-                )
+                returned_type = ProficiencyRankManager.name_to_type(name)
                 self.assertEqual(returned_type, ability_score_type)
 
     def test_short_name_to_type_pathfinder_type(self):
         for _, short_name, ability_score_type in PATHFINDER_TYPES:
             with self.subTest(f"test: short_name={short_name}"):
-                returned_type = proficiency_rank_manager.ProficiencyRankManager.short_name_to_type(
-                    short_name
-                )
+                returned_type = ProficiencyRankManager.short_name_to_type(short_name)
                 self.assertEqual(returned_type, ability_score_type)
 
     def test_name_to_type_non_pathfinder_type(self):
         for name, _, _ in NON_PATHFINDER_TYPES:
             with self.subTest(f"test: name={name}"):
                 with self.assertRaises(Exception) as exception:
-                    proficiency_rank_manager.ProficiencyRankManager.name_to_type(name)
-                self.assertEqual(
-                    str(exception.exception), f'Unknown proficiency rank name "{name}"'
-                )
+                    ProficiencyRankManager.name_to_type(name)
+                self.assertEqual(str(exception.exception), f'Unknown ProficiencyRank name "{name}"')
 
     def test_short_name_to_type_non_pathfinder_type(self):
         for _, short_name, _ in NON_PATHFINDER_TYPES:
             with self.subTest(f"test: short_name={short_name}"):
                 with self.assertRaises(Exception) as exception:
-                    proficiency_rank_manager.ProficiencyRankManager.short_name_to_type(
-                        short_name
-                    )
-                self.assertEqual(
-                    str(exception.exception),
-                    f'Unknown proficiency rank short name "{short_name}"',
-                )
+                    ProficiencyRankManager.short_name_to_type(short_name)
+                self.assertEqual(str(exception.exception), f'Unknown ProficiencyRank short name "{short_name}"')

@@ -1,18 +1,17 @@
-FROM python:3.7-alpine
+FROM python:3.9-alpine
 
 RUN mkdir /usr/pydiceweb
 WORKDIR /usr/pydiceweb
 
 RUN apk update
-RUN apk add musl-dev mariadb-dev gcc
+RUN apk add musl-dev mariadb-dev gcc build-base
 
 COPY requirements.txt ./
 
 RUN python -m pip install --upgrade --no-cache-dir setuptools
 RUN python -m pip install --no-cache-dir -r requirements.txt
 
-COPY .coveragerc ./
-COPY pylintrc ./
+COPY pyproject.toml ./
 COPY pathseeker ./pathseeker
 
 RUN python -m pytest --black --isort --pylint --cov pathseeker
