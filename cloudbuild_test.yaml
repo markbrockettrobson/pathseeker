@@ -1,14 +1,4 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  id: Build
-  args:
-  - 'build'
-  - '-t'
-  - 'gcr.io/$PROJECT_ID/pathseeker:$SHORT_SHA'
-  - '-f'
-  - 'docker/pathseeker_app.dockerfile'
-  - '.'
-
 - name: 'docker/compose:1.19.0'
   args:
   - "-f"
