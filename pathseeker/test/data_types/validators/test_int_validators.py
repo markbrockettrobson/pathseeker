@@ -6,7 +6,7 @@ from hypothesis.strategies import integers
 from pathseeker.src.data_types.validators.int_validators import cant_be_negative, must_be_multiple_of_five
 
 
-class TestApp(TestCase):
+class TestIntValidators(TestCase):
     @given(value=integers(max_value=-1))
     def test_cant_be_negative_negative(self, value: int):
         with self.assertRaises(ValueError):
