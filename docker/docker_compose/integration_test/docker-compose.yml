@@ -1,0 +1,42 @@
+version: '3.3'
+
+services:
+  mysql_db:
+    image: mysql
+    container_name: test_mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: "pKRNEPrqMYHaUh3Q2HE35v34wW4zYUyF"
+      MYSQL_DATABASE: "pathseeker"
+      MYSQL_USER: "dPWHXtT333yy59dCVbY2KpGtJUq7nh8j"
+      MYSQL_PASSWORD: "AeJ44NtfkLKdqnaepsDeFcD3M5Ht4ERC"
+    cap_add:
+      - SYS_NICE
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+    networks:
+      - backend
+
+  test:
+    image: pathseeker-integration-test:latest
+    container_name: pathseeker-integration-test
+    build:
+      dockerfile: docker/pathseeker_test.dockerfile
+      context: ../../..
+    volumes:
+      - ../../..:/application/pathseeker
+    environment:
+      PATHSEEKER_MYSQL_DATABASE_URL: "mysql_db/pathseeker"
+      PATHSEEKER_MYSQL_DATABASE_USERNAME: "dPWHXtT333yy59dCVbY2KpGtJUq7nh8j"
+      PATHSEEKER_MYSQL_DATABASE_PASSWORD: "AeJ44NtfkLKdqnaepsDeFcD3M5Ht4ERC"
+      PATHSEEKER_RUN_SQL_INTEGRATION_TEST: "True"
+    depends_on:
+      mysql_db:
+        condition: service_healthy
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: backend

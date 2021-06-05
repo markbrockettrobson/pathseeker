@@ -1,10 +1,12 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  id: Build
+- name: 'docker/compose:1.29.0'
   args:
-  - 'build'
-  - '-t'
-  - 'gcr.io/$PROJECT_ID/pathseeker:$SHORT_SHA'
-  - '-f'
-  - 'pathseeker_app.dockerfile'
-  - '.'
+  - "-f"
+  - "docker/docker_compose/integration_test/docker-compose.yml"
+  - "up"
+  - "--build"
+  - "--remove-orphans"
+  - "--force-recreate"
+  - "--abort-on-container-exit"
+  - "--exit-code-from"
+  - "test"
