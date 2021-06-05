@@ -6,7 +6,7 @@ from pathseeker.src.data_types.modifier_type import ModifierType
 T = TypeVar('T')
 
 
-class IModifier(metaclass=ABCMeta, Generic[T]):
+class IModifier(Generic[T], metaclass=ABCMeta):
     @abstractmethod
     def modify_value(self, value: T) -> T:
         pass
