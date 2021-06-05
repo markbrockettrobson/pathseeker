@@ -6,14 +6,15 @@ WORKDIR /usr/pydiceweb
 RUN apk update
 RUN apk add musl-dev mariadb-dev gcc build-base
 
-COPY ../requirements.txt ./
+COPY requirements.txt ./
 
 RUN python -m pip install --upgrade --no-cache-dir setuptools
 RUN python -m pip install --no-cache-dir -r requirements.txt
 
-COPY ../pyproject.toml ./
-COPY ../pathseeker ./pathseeker
+WORKDIR /application/pathseeker
+COPY pyproject.toml ./
+COPY pathseeker ./pathseeker
 
-RUN python -m pytest --black --isort --pylint --cov pathseeker
+RUN ls & python -m pytest --black --isort --pylint pathseeker
 
 CMD exec gunicorn --bind :$PORT --workers 1 pathseeker.src.app:APP

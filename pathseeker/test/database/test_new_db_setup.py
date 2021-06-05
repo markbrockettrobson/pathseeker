@@ -1,12 +1,14 @@
-from unittest import TestCase
+from unittest import TestCase, skipIf
 
+from pathseeker.src.config.test_config import RUN_SQL_INTEGRATION_TEST
 from pathseeker.src.database.db_table_list import TABLES
+from pathseeker.src.database.new_db_setup import main as new_db_setup_main
 from pathseeker.src.flask_app.app_factory import DATABASE
-from pathseeker.src.flask_app.new_db_setup import main as new_db_setup_main
 
 
 class TestNewDbSetup(TestCase):
-    def test_db_created(self):
+    @skipIf(not RUN_SQL_INTEGRATION_TEST, "Sql db needed for test")
+    def test_db_tables_created(self):
         new_db_setup_main()
         database = DATABASE
         self.assertIsNotNone(database)

@@ -5,10 +5,10 @@ services:
     image: mysql
     container_name: dev_mysql_db
     environment:
-      MYSQL_ROOT_PASSWORD: "ePXImvuAak3DqWOmJpqb"
+      MYSQL_ROOT_PASSWORD: "KttP98ZdZRbXTmgxjuVz6XrRt4H7BreU"
       MYSQL_DATABASE: "pathseeker"
-      MYSQL_USER: "W1AdlU0oUI8767S6f77N"
-      MYSQL_PASSWORD: "q0UMFKTy5QVl5IhZieTr"
+      MYSQL_USER: "Gg6zGq5Ld8JG7jrxYYSz74abM285nqjf"
+      MYSQL_PASSWORD: "ESqqUfg6xEreBMpmNn7qb3SqxBtsDUzJ"
     cap_add:
       - SYS_NICE
     ports:

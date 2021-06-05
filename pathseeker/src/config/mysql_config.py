@@ -12,12 +12,15 @@ MYSQL_DATABASE_URL = get_environ_str(
 
 __MYSQL_DATABASE_USERNAME = "PATHSEEKER_MYSQL_DATABASE_USERNAME"
 MYSQL_DATABASE_USERNAME = get_environ_str(
-    environ_name=__MYSQL_DATABASE_USERNAME, default_value="W1AdlU0oUI8767S6f77N", logger=LOGGER
+    environ_name=__MYSQL_DATABASE_USERNAME, default_value="Gg6zGq5Ld8JG7jrxYYSz74abM285nqjf", logger=LOGGER
 )
 
 __MYSQL_DATABASE_PASSWORD = "PATHSEEKER_MYSQL_DATABASE_PASSWORD"
 MYSQL_DATABASE_PASSWORD = get_environ_str(
-    environ_name=__MYSQL_DATABASE_PASSWORD, default_value="q0UMFKTy5QVl5IhZieTr", hide_value=True, logger=LOGGER
+    environ_name=__MYSQL_DATABASE_PASSWORD,
+    default_value="ESqqUfg6xEreBMpmNn7qb3SqxBtsDUzJ",
+    hide_value=True,
+    logger=LOGGER,
 )
 
 MYSQL_CONNECTION_STRING = f"mysql://{MYSQL_DATABASE_USERNAME}:{MYSQL_DATABASE_PASSWORD}@{MYSQL_DATABASE_URL}"
