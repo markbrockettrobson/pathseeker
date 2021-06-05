@@ -1,5 +1,5 @@
 steps:
-- name: 'docker/compose:1.19.0'
+- name: 'docker/compose:1.29.0'
   args:
   - "-f"
   - "docker/docker_compose/integration_test/docker-compose.yml"
