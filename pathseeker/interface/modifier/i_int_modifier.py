@@ -13,3 +13,13 @@ class IIntModifier(metaclass=ABCMeta):
     def type(self) -> ModifierType:
         pass
 
+    @property
+    @abstractmethod
+    def name(self) -> str:
+        pass
+
+    @property
+    @abstractmethod
+    def source(self) -> str:
+        pass
+
