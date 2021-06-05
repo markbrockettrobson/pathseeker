@@ -18,11 +18,9 @@ def main():
             print(f"> {joined_command}  {env}")
             run(command, check=True, env=working_env, shell=True)
 
-    compose_path = join(dirname(__file__), "docker/docker_compose/integration_test/docker-compose.yml")
+    compose_path = join(dirname(__file__), "docker/docker_compose/dev/local_dev_db.yml")
 
     run_command(["echo", "%cd%"])
-    run_command(["black", "."])
-    run_command(["isort", "."])
     run_command(
         [
             "docker-compose",
@@ -32,9 +30,6 @@ def main():
             "--build",
             "--remove-orphans",
             "--force-recreate",
-            "--abort-on-container-exit",
-            "--exit-code-from",
-            "test",
         ],
         {
             "BUILDAH_FORMAT": "docker",

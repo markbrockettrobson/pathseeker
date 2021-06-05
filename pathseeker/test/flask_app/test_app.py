@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from pathseeker.src.app import APP, DATABASE
+from pathseeker.src.flask_app.app_factory import APP, DATABASE
 
 
 class TestApp(TestCase):
