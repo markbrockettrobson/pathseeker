@@ -1,6 +1,5 @@
 from unittest import TestCase
 
-from pathseeker.src.data_types.size import Size
 from pathseeker.src.managers.size_manager import SizeManager
 
 PATHFINDER_SIZES = [

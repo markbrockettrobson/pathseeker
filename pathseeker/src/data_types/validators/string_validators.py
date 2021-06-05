@@ -1,4 +1,4 @@
-from typing import Collection, Callable
+from typing import Callable, Collection
 
 
 def cant_be_empty(value: str) -> str:
@@ -19,9 +19,12 @@ def must_be_lowercase(value: str) -> str:
     return value
 
 
-def string_value_in_collection(collection: Collection, error_message: str = "must be known value") -> Callable[[str], str]:
+def string_value_in_collection(
+    collection: Collection, error_message: str = "must be known value"
+) -> Callable[[str], str]:
     def validator(value: str) -> str:
         if value not in collection:
             raise ValueError(error_message)
         return value
+
     return validator

@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
-from pathseeker.src.data_types.modifier_type import ModifierType
 from pathseeker.interface.modifier.duplicate_rule.i_duplicate_rule import IDuplicateRule
+from pathseeker.src.data_types.modifier_type import ModifierType
 
 
 class IModifierTypeManager(metaclass=ABCMeta):

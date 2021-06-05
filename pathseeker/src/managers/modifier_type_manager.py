@@ -1,8 +1,8 @@
-from pathseeker.interface.managers.i_modifier_type_manager import IModifierTypeManager
-from pathseeker.src.data_types.modifier_type import ModifierType
-from pathseeker.interface.modifier.duplicate_rule.i_duplicate_rule import IDuplicateRule
-
 from unittest.mock import MagicMock
+
+from pathseeker.interface.managers.i_modifier_type_manager import IModifierTypeManager
+from pathseeker.interface.modifier.duplicate_rule.i_duplicate_rule import IDuplicateRule
+from pathseeker.src.data_types.modifier_type import ModifierType
 
 
 class ModifierTypeManager(IModifierTypeManager):
@@ -35,5 +35,5 @@ class ModifierTypeManager(IModifierTypeManager):
     def name_to_duplicate_rule(name: str) -> IDuplicateRule:
         manager_name = ModifierTypeManager.name_to_type(name=name).duplicate_modifier_type_manager
         if manager_name not in ModifierTypeManager.__NAME_TO_DUPLICATE_RULE:
-            raise Exception(f'Unknown {IDuplicateRule.__name__} name "{manager_name}"')
+            raise Exception(f'Unknown {IDuplicateRule.__name__} name "{manager_name}"')  # pragma: no cover
         return ModifierTypeManager.__NAME_TO_DUPLICATE_RULE[manager_name]

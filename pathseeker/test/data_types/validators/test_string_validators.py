@@ -1,13 +1,16 @@
-from typing import Set
-
 from string import ascii_letters, ascii_lowercase, ascii_uppercase
+from typing import Set
 from unittest import TestCase
 
 from hypothesis import assume, given
-from hypothesis.strategies import text, sets
+from hypothesis.strategies import sets, text
 
-from pathseeker.src.data_types.validators.string_validators import cant_be_empty, must_be_lowercase, must_be_uppercase, \
-    string_value_in_collection
+from pathseeker.src.data_types.validators.string_validators import (
+    cant_be_empty,
+    must_be_lowercase,
+    must_be_uppercase,
+    string_value_in_collection,
+)
 
 
 class TestStringValidators(TestCase):
@@ -38,16 +41,13 @@ class TestStringValidators(TestCase):
         self.assertEqual(value, must_be_lowercase(value))
 
     @given(values=sets(text(min_size=1), min_size=1, max_size=10))
-    def test_string_value_in_collection_true(self, values: Set[str]):
+    def test_string_value_in_collection(self, values: Set[str]):
         validator = string_value_in_collection(values)
         for value in values:
             self.assertEqual(value, validator(value))
 
-    @given(
-        values=sets(text(min_size=1), min_size=1, max_size=10),
-        value=text(min_size=1)
-    )
-    def test_string_value_in_collection_true(self, values: Set[str], value: str):
+    @given(values=sets(text(min_size=1), min_size=1, max_size=10), value=text(min_size=1))
+    def test_string_value_in_collection_error(self, values: Set[str], value: str):
         assume(value not in values)
         validator = string_value_in_collection(values)
         with self.assertRaises(ValueError):

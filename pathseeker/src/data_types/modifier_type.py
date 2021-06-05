@@ -1,7 +1,6 @@
 from pydantic import BaseModel, validator
 
-from pathseeker.src.data_types.validators.string_validators import cant_be_empty, must_be_lowercase, \
-    string_value_in_collection
+from pathseeker.src.data_types.validators.string_validators import cant_be_empty, must_be_lowercase
 
 
 class ModifierType(BaseModel):

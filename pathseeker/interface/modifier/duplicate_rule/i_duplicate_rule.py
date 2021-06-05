@@ -1,5 +1,4 @@
 from abc import ABCMeta, abstractmethod
-
 from typing import Collection
 
 from pathseeker.interface.modifier.i_modifier import IModifier

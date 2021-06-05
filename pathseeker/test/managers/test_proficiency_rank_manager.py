@@ -1,6 +1,5 @@
 from unittest import TestCase
 
-from pathseeker.src.data_types.proficiency_rank import ProficiencyRank
 from pathseeker.src.managers.proficiency_rank_manager import ProficiencyRankManager
 
 PATHFINDER_TYPES = [

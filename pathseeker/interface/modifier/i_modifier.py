@@ -1,14 +1,14 @@
 from abc import ABCMeta, abstractmethod
-from typing import TypeVar, Generic
+from typing import Generic, TypeVar
 
 from pathseeker.src.data_types.modifier_type import ModifierType
 
-T = TypeVar('T')
+ModifierValueType = TypeVar("ModifierValueType")
 
 
-class IModifier(Generic[T], metaclass=ABCMeta):
+class IModifier(Generic[ModifierValueType], metaclass=ABCMeta):
     @abstractmethod
-    def modify_value(self, value: T) -> T:
+    def modify_value(self, value: ModifierValueType) -> ModifierValueType:
         pass
 
     @property
@@ -16,3 +16,12 @@ class IModifier(Generic[T], metaclass=ABCMeta):
     def type(self) -> ModifierType:
         pass
 
+    @property
+    @abstractmethod
+    def name(self) -> str:
+        pass
+
+    @property
+    @abstractmethod
+    def source(self) -> str:
+        pass
