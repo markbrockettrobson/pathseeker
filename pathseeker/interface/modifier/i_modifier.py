@@ -8,12 +8,12 @@ ModifierValueType = TypeVar("ModifierValueType")
 
 class IModifier(Generic[ModifierValueType], metaclass=ABCMeta):
     @abstractmethod
-    def modify_value(self, value: ModifierValueType) -> ModifierValueType:
+    def modify_value(self, base_value: ModifierValueType) -> ModifierValueType:
         pass
 
     @property
     @abstractmethod
-    def type(self) -> ModifierType:
+    def modifier_type(self) -> ModifierType:
         pass
 
     @property
@@ -28,5 +28,5 @@ class IModifier(Generic[ModifierValueType], metaclass=ABCMeta):
 
     @property
     @abstractmethod
-    def source(self) -> str:
+    def priority(self) -> int:
         pass
