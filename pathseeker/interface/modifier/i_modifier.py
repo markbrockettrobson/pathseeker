@@ -18,6 +18,11 @@ class IModifier(Generic[ModifierValueType], metaclass=ABCMeta):
 
     @property
     @abstractmethod
+    def value(self) -> ModifierValueType:
+        pass
+
+    @property
+    @abstractmethod
     def name(self) -> str:
         pass
 

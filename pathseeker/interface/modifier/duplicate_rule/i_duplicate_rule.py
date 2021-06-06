@@ -1,18 +1,13 @@
 from abc import ABCMeta, abstractmethod
-from typing import Collection
+from typing import Collection, Generic, TypeVar
 
 from pathseeker.interface.modifier.i_modifier import IModifier
 
+ModifierValueType = TypeVar("ModifierValueType")
 
-class IDuplicateRule(metaclass=ABCMeta):
-    @abstractmethod
-    def get_simple_string(self) -> str:
-        pass
 
+class IDuplicateRule(Generic[ModifierValueType], metaclass=ABCMeta):
+    @staticmethod
     @abstractmethod
-    def get_detailed_string(self) -> str:
-        pass
-
-    @abstractmethod
-    def get_brake_down(self, modifiers: Collection[IModifier]) -> "IModifiableBrakeDown":
+    def apply_rule(modifiers: Collection[IModifier[ModifierValueType]]) -> Collection[IModifier[ModifierValueType]]:
         pass

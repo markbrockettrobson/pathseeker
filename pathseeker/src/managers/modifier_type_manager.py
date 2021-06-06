@@ -1,13 +1,13 @@
-from unittest.mock import MagicMock
-
 from pathseeker.interface.managers.i_modifier_type_manager import IModifierTypeManager
 from pathseeker.interface.modifier.duplicate_rule.i_duplicate_rule import IDuplicateRule
 from pathseeker.src.data_types.modifier_type import ModifierType
+from pathseeker.src.modifier.duplicate_rule.highest_only_rule import HighestOnly
+from pathseeker.src.modifier.duplicate_rule.stacks_rule import Stacks
 
 
 class ModifierTypeManager(IModifierTypeManager):
-    HIGHEST_ONLY = MagicMock(spec=IDuplicateRule)
-    STACKS = MagicMock(spec=IDuplicateRule)
+    HIGHEST_ONLY = HighestOnly()
+    STACKS = Stacks()
 
     __DUPLICATE_RULE = [HIGHEST_ONLY, STACKS]
     __NAME_TO_DUPLICATE_RULE = {
