@@ -1,6 +1,6 @@
 FROM python:3.9-alpine
 
-RUN mkdir /usr/pathseeker_web  # todo fix
+RUN mkdir /usr/pathseeker_web
 WORKDIR /usr/pathseeker_web
 
 RUN apk update
