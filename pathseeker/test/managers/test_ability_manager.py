@@ -3,7 +3,6 @@ from unittest import TestCase
 from hypothesis import given
 from hypothesis.strategies import integers
 
-from pathseeker.src.data_types.ability import Ability
 from pathseeker.src.managers.ability_manager import AbilityManager
 
 PATHFINDER_TYPES = [
@@ -16,10 +15,10 @@ PATHFINDER_TYPES = [
 ]
 
 NON_PATHFINDER_TYPES = [
-    ("stregth", "STRENGTH", Ability(name="stregth", short_name="STRENGTH")),
-    ("str", "STRENGTH", Ability(name="str", short_name="STRENGTH")),
-    ("wis,con", "DAX", Ability(name="wis,con", short_name="DAX")),
-    ("luck", "LUK", Ability(name="luck", short_name="LUK")),
+    ("stregth", "STRENGTH"),
+    ("str", "STRENGTH"),
+    ("wis,con", "DAX"),
+    ("luck", "LUK"),
 ]
 
 ABILITY_SCORE_TO_ABILITY_MODIFIER = [
@@ -59,14 +58,14 @@ class TestAbilityManager(TestCase):
                 self.assertEqual(returned_type, ability_score_type)
 
     def test_name_to_type_non_pathfinder_type(self):
-        for name, _, _ in NON_PATHFINDER_TYPES:
+        for name, _ in NON_PATHFINDER_TYPES:
             with self.subTest(f"test: name={name}"):
                 with self.assertRaises(Exception) as exception:
                     AbilityManager.name_to_type(name)
                 self.assertEqual(str(exception.exception), f'Unknown Ability name "{name}"')
 
     def test_short_name_to_type_non_pathfinder_type(self):
-        for _, short_name, _ in NON_PATHFINDER_TYPES:
+        for _, short_name in NON_PATHFINDER_TYPES:
             with self.subTest(f"test: short_name={short_name}"):
                 with self.assertRaises(Exception) as exception:
                     AbilityManager.short_name_to_type(short_name)

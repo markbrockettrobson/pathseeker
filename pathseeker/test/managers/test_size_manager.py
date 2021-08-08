@@ -1,6 +1,5 @@
 from unittest import TestCase
 
-from pathseeker.src.data_types.size import Size
 from pathseeker.src.managers.size_manager import SizeManager
 
 PATHFINDER_SIZES = [
@@ -13,10 +12,10 @@ PATHFINDER_SIZES = [
 ]
 
 NON_PATHFINDER_SIZES = [
-    ("big", "B", Size(name="big", short_name="B", space=5, tall_reach=10, long_reach=10)),
-    ("very_big", "VERY_BIG", Size(name="very_big", short_name="VERY_BIG", space=5, tall_reach=10, long_reach=10)),
-    ("smallish", "SY", Size(name="smallish", short_name="SY", space=5, tall_reach=10, long_reach=10)),
-    ("constitution", "CON", Size(name="constitution", short_name="CON", space=5, tall_reach=10, long_reach=10)),
+    ("big", "B"),
+    ("very_big", "VERY_BIG"),
+    ("smallish", "SY"),
+    ("constitution", "CON"),
 ]
 
 
@@ -34,14 +33,14 @@ class TestSizeManager(TestCase):
                 self.assertEqual(returned_size, size)
 
     def test_name_to_type_non_pathfinder_type(self):
-        for name, _, _ in NON_PATHFINDER_SIZES:
+        for name, _ in NON_PATHFINDER_SIZES:
             with self.subTest(f"test: name={name}"):
                 with self.assertRaises(Exception) as exception:
                     SizeManager.name_to_size(name)
                 self.assertEqual(str(exception.exception), f'Unknown Size name "{name}"')
 
     def test_short_name_to_type_non_pathfinder_type(self):
-        for _, short_name, _ in NON_PATHFINDER_SIZES:
+        for _, short_name in NON_PATHFINDER_SIZES:
             with self.subTest(f"test: short_name={short_name}"):
                 with self.assertRaises(Exception) as exception:
                     SizeManager.short_name_to_size(short_name)
