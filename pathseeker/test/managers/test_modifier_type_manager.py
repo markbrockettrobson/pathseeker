@@ -3,11 +3,12 @@ from unittest import TestCase
 from pathseeker.src.managers.modifier_type_manager import ModifierTypeManager
 
 PATHFINDER_TYPES = [
+    ("ability", ModifierTypeManager.ABILITY, ModifierTypeManager.HIGHEST_ONLY),
+    ("base", ModifierTypeManager.BASE, ModifierTypeManager.HIGHEST_ONLY),
     ("circumstance", ModifierTypeManager.CIRCUMSTANCE, ModifierTypeManager.HIGHEST_ONLY),
     ("item", ModifierTypeManager.ITEM, ModifierTypeManager.HIGHEST_ONLY),
-    ("status", ModifierTypeManager.STATUS, ModifierTypeManager.HIGHEST_ONLY),
-    ("ability", ModifierTypeManager.ABILITY, ModifierTypeManager.HIGHEST_ONLY),
     ("proficiency", ModifierTypeManager.PROFICIENCY, ModifierTypeManager.HIGHEST_ONLY),
+    ("status", ModifierTypeManager.STATUS, ModifierTypeManager.HIGHEST_ONLY),
     ("untyped", ModifierTypeManager.UNTYPED, ModifierTypeManager.STACKS),
 ]
 
