@@ -1,7 +1,7 @@
 Cerberus==1.3.4
 codecov==2.1.11
 flask-sqlalchemy-stubs==0.2
-flask==2.0.1
+flask==2.3.2
 flask_sqlalchemy==2.5.1
 hypothesis==6.13.5
 mysqlclient==2.0.3
